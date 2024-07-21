@@ -1,0 +1,48 @@
+{
+  "name": "mguinea/laravel-route-loader",
+  "description": "description",
+  "keywords": [
+    "laravel",
+    "laravel-route",
+    "dynamic-route",
+    "database-route",
+    "eloquent-route",
+    "laravel-route-loader"
+  ],
+  "homepage": "https://github.com/mguinea/laravel-route-loader",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marc Guinea",
+      "email": "develop.marcguinea@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "illuminate/contracts": "^11.0",
+    "illuminate/support": "^11.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^9.0",
+    "phpunit/phpunit": "^11.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mguinea\\RouteLoader\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mguinea\\RouteLoader\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Mguinea\\RouteLoader\\RouteLoaderServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
