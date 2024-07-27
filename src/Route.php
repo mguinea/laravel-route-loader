@@ -14,6 +14,7 @@ class Route
     public function __construct(
         private string $uri,
         private mixed $action,
+        private ?array $wheres = null,
         private ?array $methods = null,
         private ?array $middlewares = null,
         private ?string $domain = null,
@@ -33,6 +34,11 @@ class Route
     public function action(): mixed
     {
         return $this->action;
+    }
+
+    public function wheres(): ?array
+    {
+        return $this->wheres;
     }
 
     public function methods(): array
