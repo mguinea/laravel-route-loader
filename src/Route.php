@@ -43,7 +43,11 @@ class Route
 
     public function methods(): array
     {
-        return $this->methods ?? ['GET'];
+        if (count($this->methods) <= 0) {
+            return ['GET'];
+        }
+
+        return $this->methods;
     }
 
     public function middlewares(): ?array
