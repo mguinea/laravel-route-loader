@@ -2,10 +2,15 @@
 
 namespace Mguinea\RouteLoader;
 
-use Illuminate\Routing\Router;
-
 class Route
 {
+    /**
+     * All of the verbs supported by the router.
+     *
+     * @var string[]
+     */
+    public static $verbs = ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'];
+
     public function __construct(
         private string $uri,
         private mixed $action,
@@ -16,7 +21,7 @@ class Route
     ) {
         $this->methods = collect($methods)
             ->map(fn (string $method) => strtoupper($method))
-            ->filter(fn (string $method) => in_array($method, Router::$verbs))
+            ->filter(fn (string $method) => in_array($method, self::$verbs))
             ->toArray();
     }
 
