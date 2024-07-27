@@ -25,9 +25,13 @@ class RouteRegistrar
         $routes->each(function (Route $pendingRoute) {
             $route = $this->router->addRoute($pendingRoute->methods(), $pendingRoute->uri(), $pendingRoute->action());
 
-            $route->middleware($pendingRoute->middlewares());
+            if ($pendingRoute->middlewares()) {
+                $route->middleware($pendingRoute->middlewares());
+            }
 
-            $route->name($pendingRoute->name());
+            if ($pendingRoute->name()) {
+                $route->name($pendingRoute->name());
+            }
 
             if ($pendingRoute->wheres()) {
                 $route->setWheres($pendingRoute->wheres());
