@@ -10,7 +10,7 @@ class RouteLoaderServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/route-loader.php' => config_path('route-loader.php'),
-        ], 'config');
+        ], 'route-loader-config');
 
         $this->app->bind(RouteLoaderInterface::class, fn ($app) => $app->make($app->config['route-loader.loader']));
 
