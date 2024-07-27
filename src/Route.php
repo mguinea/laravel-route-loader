@@ -14,11 +14,11 @@ class Route
     public function __construct(
         private string $uri,
         private mixed $action,
-        private ?array $wheres = null,
         private ?array $methods = null,
         private ?array $middlewares = null,
-        private ?string $domain = null,
-        private ?string $name = null
+        private ?string $name = null,
+        private ?array $wheres = null,
+        private ?string $domain = null
     ) {
         $this->methods = collect($methods)
             ->map(fn (string $method) => strtoupper($method))

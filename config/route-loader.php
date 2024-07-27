@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'enabled' => true,
+    'enabled' => false,
     'loader' => \Mguinea\RouteLoader\DemoRouteLoader::class,
 ];
