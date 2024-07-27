@@ -8,11 +8,9 @@ class RouteLoaderServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../config/route-loader.php' => config_path('route-loader.php'),
-            ], 'config');
-        }
+        $this->publishes([
+            __DIR__ . '/../config/route-loader.php' => config_path('route-loader.php'),
+        ], 'config');
 
         $this->app->bind(RouteLoaderInterface::class, fn ($app) => $app->make($app->config['route-loader.loader']));
 
@@ -21,7 +19,10 @@ class RouteLoaderServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/route-loader.php', 'route-loader');
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/route-loader.php',
+            'route-loader'
+        );
     }
 
     private function registerRoutes(): void
@@ -43,7 +44,10 @@ class RouteLoaderServiceProvider extends ServiceProvider
             return false;
         }
 
-        if ($this->app->routesAreCached()) {
+        /** @var \Illuminate\Contracts\Foundation\CachesRoutes $app */
+        $app = $this->app;
+
+        if ($app->routesAreCached()) {
             return false;
         }
 
