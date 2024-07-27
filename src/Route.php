@@ -3,47 +3,50 @@
 namespace Mguinea\RouteLoader;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Arr;
 
 class Route
 {
-    /** @var array<int, string> */
-    public array $methods;
-
-    /** @var array<int, class-string> */
-    public array $middleware;
-
-    public array $wheres;
-
-    /**
-     * @param array<int, string>|string $method
-     * @param string|null $uri
-     * @param string|null $fullUri
-     * @param string|null $name
-     * @param array<int, class-string>|string $middleware
-     * @param string|null $domain
-     */
     public function __construct(
-        array | string $method = [],
-        public ?string $uri = null,
-        public ?string $fullUri = null,
-        public ?string $name = null,
-        array | string $middleware = [],
-        public ?string $domain = null,
-        public $action
+        private string $uri,
+        private mixed $action,
+        private ?array $methods = null,
+        private ?array $middlewares = null,
+        private ?string $domain = null,
+        private ?string $name = null
     ) {
-        $methods = Arr::wrap($method);
-
         $this->methods = collect($methods)
             ->map(fn (string $method) => strtoupper($method))
             ->filter(fn (string $method) => in_array($method, Router::$verbs))
             ->toArray();
+    }
 
-        $this->middleware = Arr::wrap($middleware);
+    public function uri(): string
+    {
+        return $this->uri;
     }
 
     public function action(): mixed
     {
+        return $this->action;
+    }
 
+    public function methods(): array
+    {
+        return $this->methods ?? ['GET'];
+    }
+
+    public function middlewares(): ?array
+    {
+        return $this->middlewares;
+    }
+
+    public function domain(): ?string
+    {
+        return $this->domain;
+    }
+
+    public function name(): ?string
+    {
+        return $this->name;
     }
 }

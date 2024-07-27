@@ -2,5 +2,5 @@
 
 return [
     'enabled' => true,
-    'loader' => \Mguinea\RouteLoader\EloquentRouteLoader::class,
+    'loader' => \Mguinea\RouteLoader\DemoRouteLoader::class,
 ];
